@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CKD Predictor</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Signika:wght@500&display=swap" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <style>
+    body{
+        background: #F6FAFD;
+    }
+    #parent {
+      display: none;
+    }
+    #ckd {
+      display: none;
+    }
+    #notckd {
+      display: none;
+    }
+    @media (max-width: 767px) {
+        #pred {
+          margin-top: 10%;
+          margin-left: 0;
+        }
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F6FAFD; margin-left: 4em;">
+    <div class="container-fluid" style="font-size: 1.1em;">
+      <a class="navbar-brand" href="#" style="font-family: 'signika'; font-size: 1.5em; color : #555;">
+        <img src="http://getdrawings.com/free-icon/bean-icon-59.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        nephrict</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:5000/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:5000/info">About CKD</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:5000/news">News</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Take the test</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
+<div class="container">
+<form action = "http://localhost:5000/predict" id="upload-details" method="post">
+  <h1>CKD Predictor</h1>
+  <div class="row" style="padding-top: 1em; border-top: 5px solid red;">
+  <div class="col-sm-12 col-lg-8 pt-4 pl-5 pb-3"  style="background-color: white; border-radius: 20px; box-shadow: 4px 4px 10px silver;">
+    
+    <div class="row" >
+      <div class="col-sm-3 col-lg-3">
+        <label for="pwd">Age</label>
+        <input type="number" class="form-control" name="age">
+      </div>
+      <div class="col-sm-4 col-lg-4">
+        <label for="pwd">Gender</label><br>
+        <label class="radio-inline"><input type="radio" value="male" name="gender">&nbsp;Male</label>&nbsp;&nbsp;
+        <label class="radio-inline"><input type="radio" value="female" name="gender">&nbsp;Female</label>&nbsp;&nbsp;
+        <label class="radio-inline"><input type="radio" value="other" name="gender">&nbsp;Other</label>
+      </div>
+      <div class="col-sm-4 col-lg-4">
+        <div class="dropdown">
+          
+          <label for="pwd">Ethnicity</label>
+          <select name="ethn">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#"><option value = "black">Black</option></a>
+            <a class="dropdown-item" href="#"><option value = "afram">African American</option></a>
+            <a class="dropdown-item" href="#"><option value = "hila">Hispanic or Latino</option></a>
+            <a class="dropdown-item" href="#"><option value = "asam">Asian American</option></a>
+            <a class="dropdown-item" href="#"><option value = "amin">American Indian</option></a>
+            <a class="dropdown-item" href="#"><option value = "alna">Alaska Native</option></a>
+            <a class="dropdown-item" href="#"><option value = "naha">Native Hawaiian</option></a>
+            <a class="dropdown-item" href="#"><option value = "opih">Other Pacific Islander heritage</option></a>
+            <a class="dropdown-item" href="#"><option value = "oth" selected>Other</option></a>
+            
+            
+          </div>
+        </select>
+          <small id="ethnhrlp" class="form-text text-muted">These communities are considered to be at more risk for CKD than the rest.
+            This information is required only for the purposes of prediction of CKD.
+          </small>
+        </div>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-sm-4 col-lg-4">
+        <label for="pwd">Blood pressure</label>
+        <div class="input-group mb-3">
+          <input type="number" class="form-control" name="bp">
+          <div class="input-group-append">
+            <span class="input-group-text">mm/Hg</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3 col-lg-3">
+        <label for="pwd">Specific Gravity</label>
+        <div class="input-group mb-3">
+          <input type="number" step="0.01" class="form-control" name="sg">
+        </div>
+      </div>
+      <div class="col-sm-3 col-lg-3">
+        <label for="pwd">Albumin</label>
+        <div class="input-group mb-3">
+          <input type="number" step="0.1" class="form-control" name="al">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-lg-4">
+        <label for="pwd">Sugar</label>
+        <div class="input-group mb-3">
+          <input type="number" step="0.1" class="form-control" name="su">
+        </div>
+      </div>
+      <div class="col-sm-4 col-lg-4">
+        <label for="pwd">Blood Urea</label>
+        <div class="input-group mb-3">
+          <input type="number" class="form-control" name="bu">
+          <div class="input-group-append">
+            <span class="input-group-text">mgs/dL</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-lg-4">
+        <label for="pwd">Serum Creatinine</label>
+        <div class="input-group mb-3">
+          <input type="number" step="0.1" class="form-control" name="sc">
+          <div class="input-group-append">
+            <span class="input-group-text">mgs/dL</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-lg-4">
+        <label for="pwd">Hemoglobin</label>
+        <div class="input-group mb-3">
+          <input type="number" step="0.1" class="form-control" name="hemo">
+          <div class="input-group-append">
+            <span class="input-group-text">gms</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-lg-4">
+        <label for="pwd">Packed Cell Volume</label>
+        <div class="input-group mb-3">
+          <input type="number" class="form-control" name="pcv">
+        </div>
+      </div>
+      <div class="col-sm-4 col-lg-4">
+        <label for="pwd">Hypertension</label><br>
+        <label class="radio-inline"><input type="radio" value="yes" name="htn">&nbsp;Yes</label>&nbsp;&nbsp;
+        <label class="radio-inline"><input type="radio" value="no" name="htn">&nbsp;No</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-lg-4">
+        <label for="pwd">White Blood Cell Count</label>
+        <div class="input-group mb-3">
+          <input type="number" class="form-control" name="wbc">
+          <div class="input-group-append">
+            <span class="input-group-text">cells/cu.mm</span>
+          </div>
+        </div>
+      </div>
+        <div class="col-sm-5 col-lg-5">
+          <label for="pwd">Red Blood Cell Count</label>
+          <div class="input-group mb-3">
+            <input type="number" step="0.1" class="form-control" name="rbc">
+            <div class="input-group-append">
+              <span class="input-group-text">millions/cu.mm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-10">
+        <center><button type="submit" class="btn btn-success">Submit</button></center>
+      </div>
+      </div>
+    </div>
+  </form>
+  <div class="col-sm-10 col-lg-3 ml-5" id="pred">
+    <div class="row justify-content-center" id="parent" style="background-color: white; color: white; border-radius: 20px; box-shadow: 4px 4px 10px silver;">
+      <div class="col-lg-10 pt-3 pl-5 pb-2 justify-content-center">
+        <center><p style="font-size: 1.5em;">Your prediction:</p></center>
+        <center><div id="ckd"><p style="font-size: 3em;">STAGE</p><p style="font-size: 4em; ">{{ stage }}</p><p>Visit your doctor at the earliest</p></div></center>
+        <center><div id="notckd"><p style="font-size: 2em;">You are not at risk!!</p><p>Follow a low-salt, low-fat diet and exercise for at least 30 minutes</p></div></center>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-5 pt-5">
+      <div class="col-sm-9 col-lg-10">
+        * Chronic Kidney Disease Predictor uses a machine learning technique to determine 
+        the likelihood of kidney disease presence and its stages.
+      </div>
+      <!-- <div class="col-sm-3 col-lg-3" style="font-size: 2em">
+        CKDP accuracy
+        97.5%
+      </div> -->
+    </div>
+  </div>
+  </div>
+  </div>
+  <script type="text/javascript">
+    var output = "{{ prediction }}";
+    if(output == 'ckd'){
+      document.getElementById("parent").style.display = "block";
+      document.getElementById("ckd").style.display = "block";
+      document.getElementById("parent").style.backgroundColor = "rgba(252, 42, 42, 0.8)";
+    }
+    if(output == 'notckd') {
+      document.getElementById("parent").style.display = "block";
+      document.getElementById("notckd").style.display = "block";
+      document.getElementById("parent").style.backgroundColor = "rgba(69, 228, 69, 0.7)";
+    }
+    if(output == '') {
+      document.getElementById("parent").style.display = "none";
+    }
+  </script>
+</body>
+</html>
+
+<!--
+  rgba(69, 228, 69, 0.7); --green
+  rgba(252, 42, 42, 0.8); --red
+-->
