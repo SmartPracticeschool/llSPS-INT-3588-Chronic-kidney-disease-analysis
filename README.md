@@ -36,3 +36,6 @@ Latest news on CKD Page
 
 <img src="User Interface Screenshots/Latest news on CKD page.png">
 
+Demo video :
+(https://drive.google.com/file/d/1o9z2E00Q1jzZScqKJftMqyBxTJThhGF4/view?usp=sharing)
+
