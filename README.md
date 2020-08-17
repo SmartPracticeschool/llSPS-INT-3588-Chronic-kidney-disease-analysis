@@ -5,7 +5,7 @@ Chronic Kidney Disease (CKD) is a major medical problem and can be cured if trea
 
 The task is to classify patients into two groups. In the first group there are patients who have Chronic Kidney Disease and in the second patients without this disease. Initial data set contains personal parameters such as age, blood pressure etc. And the last parameter is the class of particular patient, which shows presence or absence of Chronic Kidney Disease (ckd/notckd). This is achieved by using a Machine Learning model trained with Decision Tree Classification algorithm. 
 
-<h2>User Interface:<h2>
+<h2>User Interface:</h2>
 
 Landing Page
 
@@ -36,6 +36,6 @@ Latest news on CKD Page
 
 <img src="User Interface Screenshots/Latest news on CKD page.png">
 
-<h2>Project demonstration video :<h2><br>
+<h2>Project demonstration video :</h2>
 https://drive.google.com/file/d/1o9z2E00Q1jzZScqKJftMqyBxTJThhGF4/view?usp=sharing
 
